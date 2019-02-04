@@ -1,12 +1,14 @@
 {% load static %}
 <div id="myDIV" class="header">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="{% static 'shopping_list/styles.css' %}"/>
   <h1> My Shopping List: </h1>
   <h3> Type items below to add to your list. Click on the item to mark it as complete. You can delete an item by clicking 'X' or you can clear the full list by selecting 'Clear List'. </h3>
+ 
   <form action = "{% url 'add' %}" method = "POST" role = "form">
   {% csrf_token %}
   {{ form.text }}
-  <span class="addBtn">Add</span>
+  </form>
 </div>
 
 <ul id="myUL">
