@@ -17,8 +17,6 @@ def index(request):
 def addItem(request):
 	form = ShoppingForm(request.POST)
 
-	print(request.POST['text'])
-
 	if form.is_valid():
 		new_item = ShoppingList(text = request.POST['text'])
 		new_item.save()
