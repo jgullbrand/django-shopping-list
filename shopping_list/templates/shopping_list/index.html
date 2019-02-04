@@ -1,0 +1,23 @@
+{% load static %}
+<div id="myDIV" class="header">
+  <link rel="stylesheet" href="{% static 'shopping_list/styles.css' %}"/>
+  <h1> My Shopping List: </h1>
+  <h3> Type items below to add to your list. Click on the item to mark it as complete. You can delete an item by clicking 'X' or you can clear the full list by selecting 'Clear List'. </h3>
+  <form action = "{% url 'add' %}" method = "POST" role = "form">
+  {% csrf_token %}
+  {{ form.text }}
+  <span class="addBtn">Add</span>
+</div>
+
+<ul id="myUL">
+  {% for item in list %}
+  	  {% if item.complete %}
+	     <li class="checked">{{ item.text }} <a href = "{% url 'deleteitem' item.id %}"><span class="close"> X </span></a> </li>
+	  {% else %}
+	    <li> <a href = "{% url 'complete' item.id %}"> {{ item.text }} </a> <a href = "{% url 'deleteitem' item.id %}"><span class="close"> X </span></a></li>
+	  {% endif %}  
+  {% endfor %}
+</ul>
+<a href = "{% url 'deleteall' %}""><span class="clearlist"> Clear List </span></a>
+
+
